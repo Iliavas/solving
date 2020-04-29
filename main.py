@@ -9,7 +9,8 @@ class Generator:
     def __call__(self, deph, target):
         res = [[i(self.start) for i in self.commands]]
         res_pos = [[i + 1 for i in range(len(self.commands))]]
-        while deph:
+        while deph - 1:
+            deph -= 1
             local_res = []
             local_res_pos = []
             for j in res[-1]:
@@ -18,9 +19,8 @@ class Generator:
                     local_res_pos.append(pos + 1)
             res.append(local_res)
             res_pos.append(local_res_pos)
-
-            deph -= 1
         first_pos = -1
+        print(res)
         for pos, elem in enumerate(res[-1]):
             if elem == target: first_pos = pos
         if first_pos == -1: return None
@@ -40,6 +40,6 @@ class Generator:
 # HOWTO USE
 
 
-gen = Generator([lambda x: x + 1, lambda x: x * 2], 4)
+gen = Generator([lambda x: x * 2, lambda x: x + 1], 4)
 
 print(gen(4, 36))
