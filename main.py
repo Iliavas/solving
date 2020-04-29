@@ -34,7 +34,7 @@ class Generator:
         for pos, elem in enumerate(list(reversed(tgs))):
             res.append(res_pos[pos][elem])
 
-        return ''.join(res)
+        return ''.join(map(str, res))
 
 
 # HOWTO USE
